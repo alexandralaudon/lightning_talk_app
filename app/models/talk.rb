@@ -1,6 +1,6 @@
 class Talk < ActiveRecord::Base
-  validates :presenter, presence:true
-  validates :topic, presence: true
+  validates :presenter, presence:true, length: { minimum: 4 }
+  validates :topic, presence: true, length: { maximum: 20 }
   validate :date_is_tuesday_thursday
   # validate :five_talks_max
   validates_uniqueness_of :talk_date, scope: :talk_time
@@ -13,10 +13,11 @@ class Talk < ActiveRecord::Base
     end
   end
 
-  # def five_talks_max
-  #   if
-  #   end
-  # end
+  def five_talks_max
+    if talk_date.count = 5
+      errors[:base] << "Sorry, people don't like you.  5 speakers already. Try again."
+    end
+  end
 
 
 end

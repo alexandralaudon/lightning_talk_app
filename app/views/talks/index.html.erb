@@ -4,7 +4,10 @@
 </div>
 
 <h3>TALKS COMING UP!</h3>
-<%= render partial: "table", locals: {object_nm: @talks_not_completed} %>
+  <%= render partial: "table", locals: {object_nm: @talks_not_completed} %>
+
+<p></p>
+<br>
 
 <h3>TALKS COMPLETED!</h3>
-<%= render partial: "table", locals: {object_nm: @talks_completed} %>
+  <%= render partial: "table", locals: {object_nm: @talks_completed} %>
