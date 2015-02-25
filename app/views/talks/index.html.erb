@@ -1,27 +1,30 @@
 <%= link_to "Sign Up for Talk", new_talk_path %>
 
 <div class="form-horizontal">
-  <% @talks.each do |talk| %>
-    <% if talk.talk_date >= Time.new %>
-      <div class="form-group">
-        <p>YET TO BE COMPLETED </p>
-          <b><%= talk.presenter %></b>
-          <%= talk.topic %>
-          <%= talk.talk_date.strftime("%m/%d/%Y") %>
-          <%= talk.talk_time.strftime("%l:%M %p") %>
-          <%= link_to "Edit", edit_talk_path(talk[:id]) %>
-          <%= link_to "Delete", talk_path(talk[:id]), method: :delete, data: {confirm: "Are you sure?? #{talk.presenter} hasn't presented this topic yet!!"} %>
-      </div>
-    <% else %>
-      <div class="form-group">
-        <p>COMPLETED </p>
-          <b><%= talk.presenter %></b>
-          <%= talk.topic %>
-          <%= talk.talk_date.strftime("%m/%d/%Y") %>
-          <%= talk.talk_time.strftime("%l:%M %p") %>
-          <%= link_to "Edit", edit_talk_path(talk[:id]) %>
-          <%= link_to "Delete", talk_path(talk[:id]), method: :delete, data: {confirm: "Are you sure?? #{talk.presenter} worked really hard on this!!"} %>
-      </div>
+  <div class="form-group">
+    <h3>YET TO BE COMPLETED</h3>
+    <% @talks_not_completed.each do |talk| %>
+      <% if talk.talk_date >= Time.new %>
+        <b><%= talk.presenter %></b>
+        <%= talk.topic %>
+        <%= talk.talk_date.strftime("%m/%d/%Y") %>
+        <%= talk.talk_time.strftime("%l:%M %p") %>
+        <%= link_to "Edit", edit_talk_path(talk[:id]) %>
+        <%= link_to "Delete", talk_path(talk[:id]), method: :delete, data: {confirm: "Are you sure?? #{talk.presenter} hasn't presented this topic yet!!"} %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
+  <div class="form-group">
+    <h3>COMPLETED TALKS</h3>
+    <% @talks_completed.each do |talk| %>
+      <% if talk.talk_date < Time.new %>
+        <b><%= talk.presenter %></b>
+        <%= talk.topic %>
+        <%= talk.talk_date.strftime("%m/%d/%Y") %>
+        <%= talk.talk_time.strftime("%l:%M %p") %>
+        <%= link_to "Edit", edit_talk_path(talk[:id]) %>
+        <%= link_to "Delete", talk_path(talk[:id]), method: :delete, data: {confirm: "Are you sure?? #{talk.presenter} hasn't presented this topic yet!!"} %>
+      <% end %>
+    <% end %>
+  </div>
 </div>

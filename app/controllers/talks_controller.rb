@@ -1,7 +1,8 @@
 class TalksController < ApplicationController
 
   def index
-    @talks = Talk.order('talk_date DESC, talk_time DESC')
+    @talks_completed = Talk.order('talk_date DESC, talk_time DESC')
+    @talks_not_completed = Talk.order('talk_date, talk_time')
   end
 
   def new
