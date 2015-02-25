@@ -1,0 +1,20 @@
+
+<%= render partial: "shared/errors", locals: {object_nm: @talk} %>
+
+<%= form_for @talk do |t| %>
+  <%= t.label :presenter %>
+  <%= t.text_field :presenter %>
+  <br>
+  <%= t.label :topic %>
+  <%= t.text_field :topic %>
+  <br>
+  <%= t.label :talk_date %>
+  <%= t.date_field :talk_date %>
+  <br>
+  <%= t.label :talk_time %>
+  <%= t.collection_select :talk_time, Talk::TALK_TIMES, :to_s, :to_s %>
+  <br>
+  <%= t.submit %>
+  <%= link_to "cancel", root_path %>
+  <br>
+<% end %>

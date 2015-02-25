@@ -1,0 +1,12 @@
+<% if object_nm.errors.any? %>
+<div class="form-group">
+  <div class="col-md-offset-2 col-md-8">
+    <h2><%= "#{object_nm.errors.count} errors in the form!"%></h2>
+    <% object_nm.errors.full_messages.each do |message| %>
+    <ul>
+      <li><%= message %></li>
+    </ul>
+    <% end %>
+  </div>
+</div>
+<% end %>

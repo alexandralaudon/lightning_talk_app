@@ -1,3 +1,27 @@
-<%= link_to "Register", new_registration_path %>
+<%= link_to "Sign Up for Talk", new_talk_path %>
 
-<h2>HELLO INDEX</h2>
+<div class="form-horizontal">
+  <% @talks.each do |talk| %>
+    <% if talk.talk_date >= Time.new %>
+      <div class="form-group">
+        <p>YET TO BE COMPLETED </p>
+          <b><%= talk.presenter %></b>
+          <%= talk.topic %>
+          <%= talk.talk_date.strftime("%m/%d/%Y") %>
+          <%= talk.talk_time.strftime("%l:%M %p") %>
+          <%= link_to "Edit", edit_talk_path(talk[:id]) %>
+          <%= link_to "Delete", talk_path(talk[:id]), method: :delete, data: {confirm: "Are you sure?? #{talk.presenter} hasn't presented this topic yet!!"} %>
+      </div>
+    <% else %>
+      <div class="form-group">
+        <p>COMPLETED </p>
+          <b><%= talk.presenter %></b>
+          <%= talk.topic %>
+          <%= talk.talk_date.strftime("%m/%d/%Y") %>
+          <%= talk.talk_time.strftime("%l:%M %p") %>
+          <%= link_to "Edit", edit_talk_path(talk[:id]) %>
+          <%= link_to "Delete", talk_path(talk[:id]), method: :delete, data: {confirm: "Are you sure?? #{talk.presenter} worked really hard on this!!"} %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
