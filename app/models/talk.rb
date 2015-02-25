@@ -3,7 +3,7 @@ class Talk < ActiveRecord::Base
   validates :topic, presence: true, length: { maximum: 20 }
   validates_uniqueness_of :talk_date, scope: :talk_time
   validate :date_is_tuesday_thursday
-  assert
+  # assert
   # validate :five_talks_max
   # has_many :fivetalksmax
 
@@ -17,7 +17,7 @@ class Talk < ActiveRecord::Base
 
 end
 
- 
+
 # class FiveTalksMax <ActiveRecord::Base
 #   belongs_to :talk
 #   validate :five_talks_max_count, :on => :create

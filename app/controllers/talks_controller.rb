@@ -1,8 +1,9 @@
 class TalksController < ApplicationController
 
   def index
-    @talks_not_completed = Talk.where('talk_date >= ?', Date.today).order('talk_date, talk_time')
-    @talks_completed = Talk.where('talk_date < ?', Date.today).order('talk_date DESC, talk_time DESC')
+    talks = Talk.all
+    @talks_not_completed = talks.where('talk_date >= ?', Date.today).order('talk_date, talk_time')
+    @talks_completed = talks.where('talk_date < ?', Date.today).order('talk_date DESC, talk_time DESC')
   end
 
   def new
