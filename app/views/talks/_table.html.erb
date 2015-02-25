@@ -1,0 +1,24 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Presenter</th>
+      <th>Topic</th>
+      <th>Date</th>
+      <th>Time Slot</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% object_nm.each do |talk| %>
+      <tr>
+        <td><%= talk.presenter %></td>
+        <td><%= talk.topic %></td>
+        <td><%= talk.talk_date.strftime("%m/%d/%Y") %></td>
+        <td><%= talk.talk_time.strftime("%l:%M %p") %></td>
+        <td><%= link_to "Edit", edit_talk_path(talk[:id]) %><td>
+        <td><%= link_to "Delete", talk_path(talk[:id]), method: :delete, data: {confirm: "Are you sure?? #{talk.presenter} hasn't presented this topic yet!!"} %><td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to "top", talks_path %>

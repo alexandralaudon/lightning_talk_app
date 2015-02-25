@@ -1,32 +1,10 @@
-<%= link_to "Sign Up for Talk", new_talk_path %>
-
-<div class="form-horizontal">
-  <div class="form-group">
-    <h3>YET TO BE COMPLETED</h3>
-    <% @talks_not_completed.each do |talk| %>
-      <% if talk.talk_date >= Time.new %>
-        <br>
-        <b><%= talk.presenter %></b>
-        <%= talk.topic %>
-        <%= talk.talk_date.strftime("%m/%d/%Y") %>
-        <%= talk.talk_time.strftime("%l:%M %p") %>
-        <%= link_to "Edit", edit_talk_path(talk[:id]) %>
-        <%= link_to "Delete", talk_path(talk[:id]), method: :delete, data: {confirm: "Are you sure?? #{talk.presenter} hasn't presented this topic yet!!"} %>
-      <% end %>
-    <% end %>
-  </div>
-  <div class="form-group">
-    <h3>COMPLETED TALKS</h3>
-    <% @talks_completed.each do |talk| %>
-      <% if talk.talk_date < Time.new %>
-        <br>
-        <b><%= talk.presenter %></b>
-        <%= talk.topic %>
-        <%= talk.talk_date.strftime("%m/%d/%Y") %>
-        <%= talk.talk_time.strftime("%l:%M %p") %>
-        <%= link_to "Edit", edit_talk_path(talk[:id]) %>
-        <%= link_to "Delete", talk_path(talk[:id]), method: :delete, data: {confirm: "Are you sure?? #{talk.presenter} hasn't presented this topic yet!!"} %>
-      <% end %>
-    <% end %>
-  </div>
+<div class="page-header">
+  <%= link_to "Sign Up for Talk", new_talk_path, class:"btn btn-default" %>
+  <h1>LIGHTNING TALKS</h1>
 </div>
+
+<h3>YET TO BE COMPLETED</h3>
+<%= render partial: "table", locals: {object_nm: @talks_not_completed} %>
+
+<h3>COMPLETED TALKS</h3>
+<%= render partial: "table", locals: {object_nm: @talks_completed} %>
