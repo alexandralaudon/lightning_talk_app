@@ -1,6 +1,7 @@
 class Talk < ActiveRecord::Base
-  validates :presenter, presence:true, length: { minimum: 4 }
+  validates :presenter, presence: true, length: { minimum: 4 }
   validates :topic, presence: true, length: { maximum: 20 }
+  validates :talk_date, presence: true
   validates_uniqueness_of :talk_date, scope: :talk_time
   validate :date_is_tuesday_thursday
   validate :five_talks_max
