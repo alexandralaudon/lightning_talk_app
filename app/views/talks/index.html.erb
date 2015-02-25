@@ -1,10 +1,10 @@
 <div class="page-header">
-  <%= link_to "Sign Up for Talk", new_talk_path, class:"btn btn-default" %>
+  <%= link_to "Sign Up for Talk", new_talk_path, class:"btn btn-primary" %>
   <h1>LIGHTNING TALKS</h1>
 </div>
 
-<h3>YET TO BE COMPLETED</h3>
+<h3>TALKS COMING UP!</h3>
 <%= render partial: "table", locals: {object_nm: @talks_not_completed} %>
 
-<h3>COMPLETED TALKS</h3>
+<h3>TALKS COMPLETED!</h3>
 <%= render partial: "table", locals: {object_nm: @talks_completed} %>

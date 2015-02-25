@@ -1,10 +1,10 @@
-<table class="table table-striped">
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Presenter</th>
       <th>Topic</th>
       <th>Date</th>
-      <th>Time Slot</th>
+      <th colspan="5">Time Slot</th>
     </tr>
   </thead>
   <tbody>
@@ -14,8 +14,10 @@
         <td><%= talk.topic %></td>
         <td><%= talk.talk_date.strftime("%m/%d/%Y") %></td>
         <td><%= talk.talk_time.strftime("%l:%M %p") %></td>
-        <td><%= link_to "Edit", edit_talk_path(talk[:id]) %><td>
-        <td><%= link_to "Delete", talk_path(talk[:id]), method: :delete, data: {confirm: "Are you sure?? #{talk.presenter} hasn't presented this topic yet!!"} %><td>
+        <div class="col-md-offset-10 col-md-2">
+          <td><%= link_to "Edit", edit_talk_path(talk[:id]), class:"btn btn-primary pull-right" %><td>
+          <td><%= link_to "Delete", talk_path(talk[:id]), class:"btn btn-danger pull-right", method: :delete, data: {confirm: "Are you sure?? #{talk.presenter} hasn't presented this topic yet!!"} %><td>
+        </div>
       </tr>
     <% end %>
   </tbody>

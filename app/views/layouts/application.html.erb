@@ -8,11 +8,15 @@
 </head>
 <body>
 
-<% if notice %>
-  <%= notice %>
-<% end %>
+<div class="container">
 
-<%= yield %>
+  <% if notice %>
+    <p class="alert alert-success", role="alert"><%= flash[:notice] %></p>
+  <% end %>
+
+  <%= yield %>
+  
+</div>
 
 </body>
 </html>
