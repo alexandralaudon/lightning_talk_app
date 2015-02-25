@@ -9,11 +9,20 @@ class Talk < ActiveRecord::Base
 
   TALK_TIMES = ['4:30PM','4:35PM','4:40PM','4:45PM','4:50PM','4:55PM']
 
+
+  private
+
   def date_is_tuesday_thursday
     if talk_date.strftime("%A") != "Tuesday" && talk_date.strftime("%A") != "Thursday"
       errors[:base] << "Only Tuesday or Thursday can be selected!"
     end
   end
+
+  # def five_talks_max
+  #   if self.talk_date.count >= 5
+  #     errors[:base] << "Sorry, people don't like you.  5 speakers already. Try again."
+  #   end
+  # end
 
 end
 
@@ -29,8 +38,3 @@ end
 # end
   #
   #
-  # def five_talks_max
-  #   if self.talk_date(:reload).count >= 5
-  #     errors[:base] << "Sorry, people don't like you.  5 speakers already. Try again."
-  #   end
-  # end
