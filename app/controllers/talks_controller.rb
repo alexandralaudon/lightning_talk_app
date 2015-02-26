@@ -1,5 +1,5 @@
 class TalksController < ApplicationController
-before_action :talk_instance only: [:]
+# before_action :talk_instance only: [:]
 
   def index
     talks = Talk.all
